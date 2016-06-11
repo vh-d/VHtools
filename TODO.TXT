@@ -1,0 +1,1 @@
+prevod vektoru s roky ve formatu "X2006" na format "2006"
