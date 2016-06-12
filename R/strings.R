@@ -47,3 +47,20 @@ recodeStrings <- function(input, conversionTable, from = 1, to = 2, replaceNA = 
   return(result)
 }
 
+#' shorten strings by cutting characters from the middle 
+#' @param x character object to be shortened
+#' @param max maximum number of letters of the resulting characters
+#' @export
+shortenString <- function(x, max) {
+  where <- nchar(x) > max
+  x[where] <- paste(substr(x[where], 
+                           start = 1, 
+                           stop = floor(max/2) - 1),
+                    "..",
+                    substr(x[where], 
+                           start = nchar(x[where]) - (ceiling(max/2) - 2), 
+                           stop = nchar(x[where])),
+                    sep = "")
+  
+  return(x)
+}
