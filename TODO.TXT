@@ -1,1 +1,5 @@
-prevod vektoru s roky ve formatu "X2006" na format "2006"
+TODO
+====
+
+- custom color palettes
+- check platform specific functions
