@@ -34,7 +34,7 @@ instgithubproxy <- install_github_proxy
 # --------------- update_github -------------------
 #' update all R packages installed from GitHub
 #' @export
-update_github_pkgs <- function() {
+update_github_pkgs <- function(...) {
   # check/load necessary packages
   # devtools package
   if (!("package:devtools" %in% search())) {
@@ -55,7 +55,7 @@ update_github_pkgs <- function() {
     repo = packageDescription(pac, fields = "GithubRepo")
     username = packageDescription(pac, fields = "GithubUsername")
     
-    install_github_proxy(repo = paste0(username, "/", repo))
+    install_github_proxy(repo = paste0(username, "/", repo), ...)
   })
 }
 
