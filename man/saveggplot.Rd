@@ -4,7 +4,7 @@
 \alias{saveggplot}
 \title{save last ggplot to a file}
 \usage{
-saveggplot(file = clDiacr(last_plot()$labels$title), chart = last_plot(),
+saveggplot(file = NULL, chart = last_plot(),
   dir = ifelse(is.null(getOption(".DIR_PLOT")), "../output/",
   getOption(".DIR_PLOT")), format = c("wmf", "pdf", "eps", "svg"),
   width = 9, height = 9, ...)

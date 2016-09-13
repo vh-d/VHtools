@@ -1,7 +1,7 @@
 #' cleans strings for use as a file name -> for saving charts with names based on chart titles
 #' @details replaces spaces, special chars and and end-of-line charactgers by underscore characters
 #' @export
-clSpecialChars <- function(x) {
+clSpecialChars <- function(x, from = "", to = "ASCII//TRANSLIT") {
   # replace spaces and special chars
   tmpstr <- gsub(pattern = "[[:space:][:punct:]]+", 
                  replacement = "_", 
@@ -12,14 +12,14 @@ clSpecialChars <- function(x) {
                  tmpstr)
   
   # clean diacritics etc...
-  tmpstr <- iconv(tmpstr, to = "ASCII//TRANSLIT")
+  tmpstr <- iconv(tmpstr, from = from, to = to)
   return(tmpstr)
 }
 
 # --------------- clDiacr -------------------
 #' convert special letters to some normal equivalent characters
 #' @export
-clDiacr <- function(x) {
+clDiacr <- function(x, from = "", to = "ASCII//TRANSLIT") {
   #   convChars = list(    'Ĺ '='S', 'Ĺˇ'='s', 'Ĺ˝'='Z', 'Ĺľ'='z', 'Ă€'='A', 'Ă'='A', 'Ă‚'='A', 'Ă'='A', 'Ă„'='A', 'Ă…'='A', 'Ă†'='A', 'Ă‡'='C', 'Ă'='E', 'Ă‰'='E',
   #                             'ĂŠ'='E', 'Ă‹'='E', 'ĂŚ'='I', 'ĂŤ'='I', 'ĂŽ'='I', 'ĂŹ'='I', 'Ă‘'='N', 'Ă’'='O', 'Ă“'='O', 'Ă”'='O', 'Ă•'='O', 'Ă–'='O', 'Ă'='O', 'Ă™'='U',
   #                             'Ăš'='U', 'Ă›'='U', 'Ăś'='U', 'Ăť'='Y', 'Ăž'='B', 'Ăź'='Ss', 'Ă '='a', 'Ăˇ'='a', 'Ă˘'='a', 'ĂŁ'='a', 'Ă¤'='a', 'ĂĄ'='a', 'Ă¦'='a', 'Ă§'='c',
@@ -28,7 +28,7 @@ clDiacr <- function(x) {
   #   tmpstr <- chartr(paste(names(unwanted_array), collapse=''),
   #          paste(unwanted_array, collapse=''),
   #          tmpstr)
-  tmpstr <- iconv(x, to = "ASCII//TRANSLIT")
+  tmpstr <- iconv(x, from = from, to = "ASCII//TRANSLIT")
   return(tmpstr)
 }
 

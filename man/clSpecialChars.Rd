@@ -4,7 +4,7 @@
 \alias{clSpecialChars}
 \title{cleans strings for use as a file name -> for saving charts with names based on chart titles}
 \usage{
-clSpecialChars(x)
+clSpecialChars(x, from = "", to = "ASCII//TRANSLIT")
 }
 \description{
 cleans strings for use as a file name -> for saving charts with names based on chart titles
