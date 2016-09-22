@@ -12,4 +12,5 @@ Imports:
     data.table
 Suggests:
     devtools,
-    httr
+    httr,
+    stringdist

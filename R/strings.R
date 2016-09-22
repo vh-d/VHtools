@@ -64,3 +64,51 @@ shortenString <- function(x, max) {
   
   return(x)
 }
+
+#' Merge two datasets based on both exact and approximate keys
+#' @description \code{amerge} merges two datasets by exact keys and filter out rows that do not approximately match by given string keys.
+#' @param x A data.frame or data.table.
+#' @param aby name of a string key for approximate matching
+#' @param y A data.frame or data.table.
+#' @param method Method for distance calculation.
+#' @param tol tolerance of dissimilarity between string keys in matched datasets
+#' @param p see \code{stringdist} package
+#' @param ... other parameters passed to \code{\link{merge}}
+#' @seealso \code{\link{merge}}, \code{\link{stringdist}} and \code{\link{stringsim}}
+#' @examples 
+#' 
+#' dt1 <- data.table(id   = c(1,      2,             3,      4,                  5),
+#'                   name = c("Aple", "Google inc.", "ABB",  "Sun",              "Sony"),
+#'                   value = rnorm(5))
+#' 
+#' dt2 <- data.table(id   = c(1,       2,             3,     4,                  5),
+#'                   name = c("Apple", "Google",     "BBC",  "Sun Microsystems", "Sony Corporation"),
+#'                   value = rnorm(5))
+#' 
+#' amerge(dt1, dt2, by = "id", aby = "name", tol = 0.3)
+#' @export
+amerge <- function(x, y, 
+                   aby, 
+                   method = "jw", 
+                   tol = 0.1, 
+                   p = 0.1, 
+                   ...) {
+  lim <- 1-tol
+  
+  if (!("package:stringdist" %in% search())) {
+    tryCatch(require(stringdist), error = function(x) {warning(x); cat("Cannot load stringdist package \n")})
+    on.exit(detach("package:stringdist", unload=TRUE))
+  }
+  
+  dt <- merge(x = x, 
+              y = y,
+              ...)
+  
+  similarity <- stringsim(a = x[[aby]],
+                          b = y[[aby]],
+                          method = method,
+                          p = p)
+  dt <- dt[similarity > lim]
+  
+  return(dt)
+}
