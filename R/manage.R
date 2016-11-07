@@ -2,8 +2,8 @@
 #' set proxy seetings and call install_github() 
 #' @export
 install_github_proxy <- function(..., 
-                                 proxy = getIEProxy()[1],
-                                 port = as.integer(getIEProxy()[2])) {
+                                 proxy = "auto",
+                                 port  = NULL) {
   
   # check presence and load necessary packages
   # devtools package
@@ -12,14 +12,28 @@ install_github_proxy <- function(...,
     on.exit(detach("package:devtools", unload=TRUE))
   }
   
-  # httr package
-  if (!("package:httr" %in% search())) {
-    tryCatch(require(httr), error = function(x) {warning(x); cat("Cannot load httr package \n")})
-    on.exit(detach("package:httr", unload=TRUE))
+  if (proxy == "auto") {
+    if (.Platform$OS.type == "windows") {
+      winprox <- getIEProxy()
+      proxy   <- winprox[1]
+      port    <- if (!is.null(port)) port else as.integer(winprox[2])
+    } else {
+      proxy <- NULL
+      port  <- NULL
+    }
   }
   
-  # set proxy via httr set_config() command
-  httr::set_config(use_proxy(url = proxy, port = port))
+  if (!is.null(proxy)) {
+    
+    # httr package
+    if (!("package:httr" %in% search())) {
+      tryCatch(require(httr), error = function(x) {warning(x); cat("Cannot load httr package \n")})
+      on.exit(detach("package:httr", unload=TRUE))
+    }
+    
+    # set proxy via httr set_config() command
+    httr::set_config(use_proxy(url = proxy, port = port))
+  }
   
   # run devtools install_github() command
   devtools::install_github(...)

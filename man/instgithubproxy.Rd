@@ -4,8 +4,7 @@
 \alias{instgithubproxy}
 \title{set proxy seetings and call install_github()}
 \usage{
-instgithubproxy(..., proxy = getIEProxy()[1],
-  port = as.integer(getIEProxy()[2]))
+instgithubproxy(..., proxy = "auto", port = NULL)
 }
 \description{
 set proxy seetings and call install_github()
