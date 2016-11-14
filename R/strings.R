@@ -112,3 +112,34 @@ amerge <- function(x, y,
   
   return(dt)
 }
+
+
+find_first_match_ <- function(xx, l, pass) {
+  for (i in 1:length(l)) {
+    if (xx %in% l[[i]]) return(names(l)[i])
+  }
+  
+  return(if (pass) xx else NA)
+}
+require(compiler)
+find_first_match <- cmpfun(find_first_match_, options = list(optimize = 3))
+
+
+#' Collapse character vector (strings) into groups.
+#' @description For each string in a vector \code{group_str} finds first match in list of vectors and returns name of the vector.
+#' @param x a character vector
+#' @param l a (usually named) list of character vectors
+#' #' @export
+group_str <- function(x, l, pass = TRUE, USE.NAMES = TRUE) {
+  # l has to be a named list
+  if (!is.list(l)) stop("l has to be a list.")
+  if (is.null(names(l))) {
+    warning("l has has no names, order indeces will be used instead")
+    names(l) <- 1:length(l)
+  }
+  
+  sapply(X   = x, 
+         FUN = find_first_match, 
+         l = l, pass = pass, USE.NAMES = USE.NAMES)
+}
+
