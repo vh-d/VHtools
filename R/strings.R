@@ -129,7 +129,7 @@ find_first_match <- cmpfun(find_first_match_, options = list(optimize = 3))
 #' @description For each string in a vector \code{group_str} finds first match in list of vectors and returns name of the vector.
 #' @param x a character vector
 #' @param l a (usually named) list of character vectors
-#' #' @export
+#' @export
 group_str <- function(x, l, pass = TRUE, USE.NAMES = TRUE) {
   # l has to be a named list
   if (!is.list(l)) stop("l has to be a list.")
