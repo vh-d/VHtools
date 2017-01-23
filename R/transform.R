@@ -267,3 +267,7 @@ fillNAs <- function(x, by_val = 0) {
   return(x)
 }
 
+#' split vector into batches 
+#' @param x vector
+#' @param size (maximum) size of a single batch
+split2Batches <- function(x, size) split(x, ceiling(seq_along(x)/size))
