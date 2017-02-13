@@ -17,4 +17,3 @@ vector of the specified type
 \description{
 convert a vector to a specified type
 }
-

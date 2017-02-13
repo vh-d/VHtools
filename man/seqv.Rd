@@ -17,4 +17,3 @@ seq function on vectors
 \details{
 If the \code{from - to} vector is not constant vector and \code{simplify = F}, \code{seqv} returns a list.
 }
-

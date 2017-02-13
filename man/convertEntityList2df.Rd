@@ -19,4 +19,3 @@ data.frame
 \description{
 Transform given list of legal entities from \code{scrapeLEI} funtion to a data.frame
 }
-

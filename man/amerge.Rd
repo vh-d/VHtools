@@ -39,4 +39,3 @@ amerge(dt1, dt2, by = "id", aby = "name", tol = 0.3)
 \seealso{
 \code{\link{merge}}, \code{\link{stringdist}} and \code{\link{stringsim}}
 }
-

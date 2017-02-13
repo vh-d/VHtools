@@ -12,4 +12,3 @@ normalize(v)
 \description{
 returns normalized vector (matrix)
 }
-

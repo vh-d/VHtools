@@ -21,4 +21,3 @@ recode vector of strings using a convertion table
 \details{
 ...
 }
-

@@ -11,4 +11,3 @@ ctrlC(data = .Last.value, dec = ",", sep = "\\t", rn = F, ...)
 writes last value to clipboard for easy copy-paste to excel
 \code{ctrlC} writes last result to clipboard (to be paste to excel or other spreasheet).
 }
-

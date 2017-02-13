@@ -12,4 +12,3 @@ as.Date2(x, ...)
 \description{
 alias for as.Date function for converting dates from dd.mm.yyyy format
 }
-

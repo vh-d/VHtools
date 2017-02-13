@@ -12,4 +12,3 @@ hist4Calc(...)
 \description{
 read a series from (excel, Calc, ...) clipboard, draws its histogram and save results to clipbaord (for excel, Calc, ...)
 }
-

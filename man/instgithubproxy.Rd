@@ -9,4 +9,3 @@ instgithubproxy(..., proxy = "auto", port = NULL)
 \description{
 set proxy seetings and call install_github()
 }
-

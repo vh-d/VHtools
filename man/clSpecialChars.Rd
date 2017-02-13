@@ -12,4 +12,3 @@ cleans strings for use as a file name -> for saving charts with names based on c
 \details{
 replaces spaces, special chars and and end-of-line charactgers by underscore characters
 }
-

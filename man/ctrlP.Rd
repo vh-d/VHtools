@@ -11,4 +11,3 @@ ctrlP(dec = ",", sep = "\\t", rn = NULL, ...)
 read from clipboard for easy copy-paste from spreasdsheet (Excel)
 \code{ctrlP} reads clipboard (copied from excel or other spreasheet) and returns a \code{data.frame}.
 }
-

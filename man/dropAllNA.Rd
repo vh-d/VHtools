@@ -25,4 +25,3 @@ deleteAllNA(tmp)
 deleteAllNA(tmp, id = "a")
 deleteAllNA(tmp, id = c("a", "b"))
 }
-

@@ -17,4 +17,3 @@ read xlsx file as downloaded from EIU and return panel data in the form of (coun
 \details{
 depends on data.table and xlsx packages
 }
-

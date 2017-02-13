@@ -22,4 +22,3 @@ ask for user's input
 \details{
 In case \emph{default} is in range of possible answers, the default answer is uppercased and empty input (return key) is treated as the default answer.
 }
-

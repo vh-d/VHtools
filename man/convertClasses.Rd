@@ -17,4 +17,3 @@ data.frame
 \description{
 convert columns in a data.frame to a specified types
 }
-

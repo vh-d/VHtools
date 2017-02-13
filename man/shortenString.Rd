@@ -14,4 +14,3 @@ shortenString(x, max)
 \description{
 shorten strings by cutting characters from the middle
 }
-

@@ -9,4 +9,3 @@ clDiacr(x, from = "", to = "ASCII//TRANSLIT")
 \description{
 convert special letters to some normal equivalent characters
 }
-

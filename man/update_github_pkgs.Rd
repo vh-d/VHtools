@@ -9,4 +9,3 @@ update_github_pkgs(...)
 \description{
 update all R packages installed from GitHub
 }
-

@@ -15,4 +15,3 @@ a single data.frame/data.table
 \description{
 \code{mergeAll} merges multiple data.frames with the same id vars
 }
-

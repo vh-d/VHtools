@@ -18,4 +18,3 @@ data.frame (or vector) with (n*(n-1)/2) columns (or elements)
 \examples{
 allCombApply(matrix(c(1, 2, 3, 4, 5, 6, 7, 8), nrow = 2), function(v1, v2) {v1-v2})
 }
-

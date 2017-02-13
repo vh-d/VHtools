@@ -28,4 +28,3 @@ openLEI(lei_vec, showMissing = T)
 convertEntityList2df(openLEI(lei_vec))
 convertEntityList2df(openLEI(lei_vec), wide = F)
 }
-

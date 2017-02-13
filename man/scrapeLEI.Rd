@@ -28,4 +28,3 @@ scrapeLEI(lei_vec, showMissing = T)
 convertEntityList2df(scrapeLEI(lei_vec))
 convertEntityList2df(scrapeLEI(lei_vec), wide = F)
 }
-

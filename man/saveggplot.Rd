@@ -25,4 +25,3 @@ saveggplot(file = NULL, chart = last_plot(),
 \description{
 \code{saveggplot} save last printed ggplot to a file
 }
-

@@ -26,4 +26,3 @@ fields <- c(Title = "Data source", DO = "What the code does", Author = "Author")
 tab <- generateDocs(fields = fields)
 paste(tab, collapse = "")
 }
-

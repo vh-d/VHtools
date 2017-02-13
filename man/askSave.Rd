@@ -19,4 +19,3 @@ askSave(data, filename = substitute(data), filepath = "../output/",
 \description{
 Save file after asking the user for confirmation
 }
-

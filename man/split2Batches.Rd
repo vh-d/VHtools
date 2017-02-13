@@ -14,4 +14,3 @@ split2Batches(x, size)
 \description{
 split vector into batches
 }
-

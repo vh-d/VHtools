@@ -9,4 +9,3 @@ omitNALines(data, mar = c(1, 2), id = NULL)
 \description{
 deletes all-NAs rows and columns (deprecated, see dropAllNA)
 }
-

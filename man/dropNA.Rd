@@ -15,4 +15,3 @@ a vector of the same type as \code{vect}.
 \description{
 return a copy of a vector omitting NA values
 }
-

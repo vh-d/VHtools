@@ -18,4 +18,3 @@ applies given function to all combinations of matrix columns
 \examples{
 allCombApplyM(matrix(rnorm(25), nrow = 5), FUN = cor)
 }
-
