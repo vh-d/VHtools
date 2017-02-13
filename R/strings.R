@@ -40,7 +40,7 @@ clDiacr <- function(x, from = "", to = "ASCII//TRANSLIT") {
 #' @details ...
 #' @export
 recodeStrings <- function(input, conversionTable, from = 1, to = 2, replaceNA = T) {
-  result <- conversionTable[[to]][match(input, conversionTable[[from]])]
+  result <- conversionTable[, to][match(input, conversionTable[, from])]
   if (replaceNA) {
     result[is.na(result)] <- input[is.na(result)]
   }
