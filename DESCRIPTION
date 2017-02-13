@@ -7,10 +7,11 @@ Author: Vaclav Hausenblas
 Maintainer: Vaclav Hausenblas <vaclav.hausenblas@gmail.com>
 Description: Various help functions for daily work with strings clipboard etc...
 License: GPL
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Imports:
     data.table
 Suggests:
     devtools,
     httr,
-    stringdist
+    stringdist,
+    stringr

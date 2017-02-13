@@ -125,14 +125,25 @@ require(compiler)
 find_first_match <- cmpfun(find_first_match_, options = list(optimize = 3))
 
 
+find_first_match_r <- function(xx, l, no.match) {
+  for (i in 1:length(l)) {
+    if (any(str_detect(string = xx, pattern = l[[i]]))) return(names(l)[i])
+  }
+  
+  return(if (is.null(no.match)) xx else no.match)
+}
+find_first_match_r <- cmpfun(find_first_match_r, options = list(optimize = 3))
+
+
 #' Collapse vector into groups.
 #' @description For each value in a vector \code{group_vec} finds first match in list of vectors and returns name of the vector.
 #' @param x a character vector
 #' @param l a (usually named) list of character vectors
 #' @param no.match value that should be returned if no match is found. Usually NA or "other". If NULL (default) the original value itself is returned.
 #' @param USE.NAMES logical passed to sapply indicating whether a result should be a named vector (for character input vectors only).
+#' @param fixed logical; allows match based on regular expressions
 #' @export
-group_vec <- function(x, l, no.match = NULL, USE.NAMES = TRUE) {
+group_vec <- function(x, l, no.match = NULL, USE.NAMES = TRUE, fixed = TRUE) {
   # l has to be a named list
   if (!is.list(l)) stop("l has to be a list.")
   if (is.null(names(l))) {
@@ -140,8 +151,17 @@ group_vec <- function(x, l, no.match = NULL, USE.NAMES = TRUE) {
     names(l) <- 1:length(l)
   }
   
-  sapply(X   = x, 
-         FUN = find_first_match, 
-         l = l, no.match = no.match, USE.NAMES = USE.NAMES)
+  if (fixed) {
+    return(
+      sapply(X   = x, 
+             FUN = find_first_match, 
+             l = l, no.match = no.match, USE.NAMES = USE.NAMES))
+  } else {
+    require(stringr)
+    return(
+      sapply(X   = x, 
+             FUN = find_first_match_r, 
+             l = l, no.match = no.match, USE.NAMES = USE.NAMES))
+  }
 }
 

@@ -4,7 +4,7 @@
 \alias{group_vec}
 \title{Collapse vector into groups.}
 \usage{
-group_vec(x, l, no.match = NULL, USE.NAMES = TRUE)
+group_vec(x, l, no.match = NULL, USE.NAMES = TRUE, fixed = TRUE)
 }
 \arguments{
 \item{x}{a character vector}
@@ -14,8 +14,9 @@ group_vec(x, l, no.match = NULL, USE.NAMES = TRUE)
 \item{no.match}{value that should be returned if no match is found. Usually NA or "other". If NULL (default) the original value itself is returned.}
 
 \item{USE.NAMES}{logical passed to sapply indicating whether a result should be a named vector (for character input vectors only).}
+
+\item{fixed}{logical; allows match based on regular expressions}
 }
 \description{
 For each value in a vector \code{group_vec} finds first match in list of vectors and returns name of the vector.
 }
-
