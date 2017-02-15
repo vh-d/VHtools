@@ -4,7 +4,7 @@
 \name{VHtools-package}
 \alias{VHtools}
 \alias{VHtools-package}
-\title{This paclage is blablabla...}
+\title{This paclage provides various help functions for daily work with strings, clipboard etc...}
 \description{
-This paclage is blablabla...
+This paclage provides various help functions for daily work with strings, clipboard etc...
 }

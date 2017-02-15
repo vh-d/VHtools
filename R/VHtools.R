@@ -4,6 +4,5 @@
 # What: R package with tool functions 
 # ================================================================= #
 
-#' This paclage is blablabla...
+#' This paclage provides various help functions for daily work with strings, clipboard etc...
 "_PACKAGE"
-
