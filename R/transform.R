@@ -271,3 +271,48 @@ fillNAs <- function(x, by_val = 0) {
 #' @param x vector
 #' @param size (maximum) size of a single batch
 split2Batches <- function(x, size) split(x, ceiling(seq_along(x)/size))
+
+#' alternative version of diff() returning constant-length vector
+#'
+#' Wrapper to diff() function that fill in values at the beginning of the resulting vector
+#'
+#' @param x numeric/integer vector (see help for diff())
+#' @param x lag (see help for diff())
+#' @param x differences (see help for diff())
+#' @param x fill value to fill in missing values
+#'
+#' @return vector of the same length and as \code{x}
+#' @examples
+#' str(diff(1:10))
+#' str(diff_fill(1:10))
+#' str(diff_fill(1:10, fill = NULL))
+#' @export
+diff_fill <- function(x, lag = 1, differences = 1, fill = NA) {
+  c(rep(fill, lag*differences), diff(x, lag = lag, differences = differences))
+}
+
+#' differences of periodic cumsums
+#'
+#' Compute diffences of values that are cumulative sums restarting from 0 every period such as accouting values.
+#'
+#' @param x numeric/integer vector
+#' @param t time index
+#' @param tbase value of time index where cumulative sums starts from 0
+#' @param fill (see help for diff_fill())
+#'
+#' @return return
+#' @examples
+#' ts <- c(cumsum(rnorm(12, 3)), cumsum(rnorm(12, 5)))
+#' plot(ts, type = "l")
+#' plot(diff(ts), type = "l")
+#' 
+#' tsd <- diff_basis(ts, rep(1:12, times = 2))
+#' plot(tsd, type = "l")
+#' 
+#' @export
+diff_basis <- function(x, t, tbase = 1, fill = NA) {
+  result <- diff_fill(x, fill = fill)
+  result[t == tbase] <- x[t == tbase]
+  
+  return(result)
+}
