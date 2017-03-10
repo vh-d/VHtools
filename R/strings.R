@@ -65,6 +65,11 @@ shortenString <- function(x, max) {
   return(x)
 }
 
+#' shorten strings by cutting characters from the middle - alias for shortenString()
+#' @export
+str_shrt <- shortenString
+
+
 #' Merge two datasets based on both exact and approximate keys
 #' @description \code{amerge} merges two datasets by exact keys and filter out rows that do not approximately match by given string keys.
 #' @param x A data.frame or data.table.
