@@ -316,3 +316,40 @@ diff_basis <- function(x, t, tbase = 1, fill = NA) {
   
   return(result)
 }
+
+#' Apply function to rolling/moving windows
+#' @export
+winply <- function(x, fun, win, ...) {
+  if (length(x) <= win) return(as.numeric(NA))
+  res <- rep(NA, length(x))
+  for (i in win:length(x)) {
+    res[i] <- do.call(fun, args = list(x[(i-win+1):i], ...))
+  }
+  
+  res
+}
+
+
+#' Apply function to rolling/moving windows of changing width
+#' @export
+winply_v <- function(x, fun, win, fill = NA, ...) {
+  if (length(win) == 1) {
+    win <- rep(win, length(x))
+  } else
+    if (length(win) != length(x)) stop("Mismatch in lengths of x and window width!")
+  
+  res <- rep(NA, length(x))
+  
+  tmp <- seq_along(x) - win
+  add <- -1*min(tmp[tmp < 0], 0)
+  x2  <- c(rep(fill[1], add), x)
+  
+  for (i in 1:length(x)) {
+    res[i] <- do.call(fun, args = list(x2[(i+add-win[i]+1):(i+add)], ...))
+  }
+  
+  res
+}
+# require(compiler)
+# winply_v <- cmpfun(winplyv_)
+
