@@ -183,10 +183,27 @@ seqv <- function(from, to, ..., simplify = F) {
   }
 }
 
-#' returns normalized vector (matrix)
-#' @param \code{v} vector/matrix to be normalized
+#' rescale numeric objects
+#' @param \code{v} vector/matrix to be rescaled
+#' @return \code{normalize} returns vector/matrix rescaled to the \code{[0;1]} interval
 #' @export
-normalize <- function(v) (v - min(v))/diff(range(v))
+normalize <- function(v, ...) (v - min(v, ...))/diff(range(v, ...))
+
+#' @rdname normalize
+#' @param \code{low} minimum of the resulting interval
+#' @param \code{high} maximum of the resulting interval
+#' @param \code{...} parameters passed to \code{min} and \code{max} (or \code{range}) methods
+#' @return \code{rescale} returns vector/matrix rescaled to the \code{[low;high]} interval
+#' @export
+rescale <- function(x, low = 0.0, high = 1.0, ...) {
+  x <- as.numeric(x)
+  
+  minx = min(x, ...)
+  maxx = max(x, ...)
+  
+  return(low+(high-low)*(x - minx)/(maxx - minx))
+}
+
 
 
 #' @export
@@ -353,4 +370,5 @@ winply_v <- function(x, fun, win, fill = NA, ...) {
 }
 # require(compiler)
 winply_v <- cmpfun(winply_v)
+
 

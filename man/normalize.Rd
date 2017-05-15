@@ -2,13 +2,27 @@
 % Please edit documentation in R/transform.R
 \name{normalize}
 \alias{normalize}
-\title{returns normalized vector (matrix)}
+\alias{rescale}
+\title{rescale numeric objects}
 \usage{
-normalize(v)
+normalize(v, ...)
+
+rescale(x, low = 0, high = 1, ...)
 }
 \arguments{
-\item{\code{v}}{vector/matrix to be normalized}
+\item{\code{v}}{vector/matrix to be rescaled}
+
+\item{\code{low}}{minimum of the resulting interval}
+
+\item{\code{high}}{maximum of the resulting interval}
+
+\item{\code{...}}{parameters passed to \code{min} and \code{max} (or \code{range}) methods}
+}
+\value{
+\code{normalize} returns vector/matrix rescaled to the \code{[0;1]} interval
+
+\code{rescale} returns vector/matrix rescaled to the \code{[low;high]} interval
 }
 \description{
-returns normalized vector (matrix)
+rescale numeric objects
 }
