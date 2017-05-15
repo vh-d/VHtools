@@ -205,34 +205,6 @@ rescale <- function(x, low = 0.0, high = 1.0, ...) {
 }
 
 
-
-#' @export
-generateDocRow <- function(filename, fields) {
-  
-  fieldString <- function(field){
-    
-    re <- regexpr(pattern = paste0("#'[ ]*", field, ":[ ]*"), 
-                  text = cont,
-                  perl = T)
-    
-    return(
-      substr(cont[re > 0][1],
-             start = re[re > 0][1] + attr(re, "match.length")[re > 0][1],
-             stop = nchar(cont[re > 0][1])
-      )
-    )
-  }  
-  
-  fls <- file(filename, "r")
-  cont <- readLines(fls)
-  close(fls)
-  
-  matchedFields <- sapply(fields,
-                          fieldString)
-  
-  return(paste0("| ", basename(filename), " | ", paste(matchedFields, collapse = " | "), " |\n"))
-}
-
 # APPLY FUNCTIONS ---------------------------------------------------------
 
 #' convert a vector to a specified type
