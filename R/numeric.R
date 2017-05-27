@@ -9,3 +9,8 @@ isSemiPosDef <- function(M) {
   if (!all.equal(M, t(M))) return(FALSE)
   if (all(eigen(M)$values >= 0)) TRUE else FALSE
 } 
+
+#' @export
+pequal <- function(x, y) {
+  abs(x - y) < sqrt(.Machine$double.eps)
+}
