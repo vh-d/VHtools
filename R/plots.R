@@ -36,4 +36,19 @@ saveggplot <- function(file   = NULL,
   dev.off()
 }
 
+#' @export
+col_palette <- 
+  c("blue"       = "#3F84C4", 
+    "red"        = "#EA5B3F",
+    "green"      = "#21A535", 
+    "violet"     = "#93338C",
+    "blue2"      = "#59C6F2", 
+    "orange"     = "#F29100",
+    "green2"     = "#C4D31C",
+    "yellow"     = "#FFDD00",
+    "grey"       = "#B2B2B2",
+    "pink"       = "#C59CC7")
 
+#' @export
+col_palette_val <- col_palette
+attributes(col_palette_val) <- NULL
