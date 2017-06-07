@@ -170,3 +170,12 @@ group_vec <- function(x, l, no.match = NULL, USE.NAMES = TRUE, fixed = TRUE) {
   }
 }
 
+
+#' Wrap long texts
+#' @details 
+#' A vectorized version of \code{strwrap()}
+#' @export
+wrap_text <- function(text, width) {
+  wtext <- sapply(text, function(x) paste(strwrap(x, width = width), collapse=" \n "))
+  return(wtext)
+}
