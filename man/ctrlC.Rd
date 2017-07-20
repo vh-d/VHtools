@@ -2,12 +2,18 @@
 % Please edit documentation in R/io.R
 \name{ctrlC}
 \alias{ctrlC}
+\alias{CtrlC}
 \title{writes last value to clipboard for easy copy-paste to excel
 \code{ctrlC} writes last result to clipboard (to be paste to excel or other spreasheet).}
 \usage{
 ctrlC(data = .Last.value, dec = ",", sep = "\\t", rn = F, ...)
+
+CtrlC(data = .Last.value, dec = ".", sep = "\\t", rn = F, ...)
 }
 \description{
 writes last value to clipboard for easy copy-paste to excel
 \code{ctrlC} writes last result to clipboard (to be paste to excel or other spreasheet).
+}
+\details{
+For CtrlC decimal point character is set to "." while ctrlC uses ",".
 }

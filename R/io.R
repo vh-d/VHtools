@@ -11,9 +11,15 @@ ctrlP <- function(dec = ",", sep = "\t", rn = NULL, ...) {
 #' \code{ctrlC} writes last result to clipboard (to be paste to excel or other spreasheet).
 #' @export
 ctrlC <- function(data = .Last.value, dec = ",", sep = "\t", rn = F, ...) {
-  write.table(x = data, file = "clipboard", sep="\t", dec = ",", row.names = rn, ...)
+  write.table(x = data, file = "clipboard", sep = sep, dec = dec, row.names = rn, ...)
 }
 
+#' @export
+#' @details For CtrlC decimal point character is set to "." while ctrlC uses ",".
+#' @rdname ctrlC
+CtrlC <- function(data = .Last.value, dec = ".", sep = "\t", rn = F, ...) {
+  write.table(x = data, file = "clipboard", sep = sep, dec = dec, row.names = rn, ...)
+}
 
 #' read a series from (excel, Calc, ...) clipboard, draws its histogram and save results to clipbaord (for excel, Calc, ...)
 #' @param \code{...} parameters tp be passed to \code{ctrlC} and \code{ctrlP} functions
