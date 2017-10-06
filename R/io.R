@@ -108,3 +108,36 @@ askSave <- function(data,
   }
 }
 
+
+#' convert a file from one encoding to another
+#' @title convert file encoding
+#' @description convert a file from one encoding to another
+#' @param from_file source file path
+#' @param to_file destination file path
+#' @param from_encoding source endoding, Default: 'windows-1250'
+#' @param to_encoding target encoding, Default: 'UTF-8'
+#' @return TRUE if succesfull
+#' @details 
+#' @examples 
+#' \dontrun{
+#' if(interactive()){
+#'  #EXAMPLE1
+#'  }
+#' }
+#' @rdname iconvFile
+#' @export 
+iconvFile <- function(from_file, 
+                      to_file, 
+                      from_encoding = "windows-1250", 
+                      to_encoding = "UTF-8"){
+
+  writeLines(
+    iconv(
+      readLines("from_file", 
+                encoding = from_encoding), 
+      from = from_encoding, 
+      to   = to_encoding), 
+    file(to_file))
+  
+  return(invisible(TRUE))
+}
