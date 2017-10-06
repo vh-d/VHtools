@@ -125,3 +125,19 @@ generateDocRow <- function(filename, fields) {
   
   return(paste0("| ", basename(filename), " | ", paste(matchedFields, collapse = " | "), " |\n"))
 }
+
+#' Search for a file in different places and source the first hit.
+#' @param \code{file} name of the file
+#' @param \code{places} character vector of places (directories) where to search for the file
+#' @param \code{...} other arguments will be passed to \code{source}
+#' @export
+source_search <- function(file, places, ...) {
+  for (place in places) {
+    if (file.exists(file.path(place, file))) {
+      source(file.path(place, file), ...)
+      return(invisible(TRUE))
+    }
+  }
+  stop("File ", file, " not found.")  
+}
+
