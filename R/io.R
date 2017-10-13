@@ -137,7 +137,7 @@ iconvFile <- function(from_file,
                 encoding = from_encoding), 
       from = from_encoding, 
       to   = to_encoding), 
-    file(to_file))
+    file(to_file, open = "w"))
   
   return(invisible(TRUE))
 }
