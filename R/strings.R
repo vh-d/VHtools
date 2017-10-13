@@ -119,15 +119,13 @@ amerge <- function(x, y,
 }
 
 
-find_first_match_ <- function(xx, l, no.match) {
+find_first_match <- function(xx, l, no.match) {
   for (i in 1:length(l)) {
     if (xx %in% l[[i]]) return(names(l)[i])
   }
   
   return(if (is.null(no.match)) xx else no.match)
 }
-require(compiler)
-find_first_match <- cmpfun(find_first_match_, options = list(optimize = 3))
 
 
 find_first_match_r <- function(xx, l, no.match) {
@@ -137,7 +135,6 @@ find_first_match_r <- function(xx, l, no.match) {
   
   return(if (is.null(no.match)) xx else no.match)
 }
-find_first_match_r <- cmpfun(find_first_match_r, options = list(optimize = 3))
 
 
 #' Collapse vector into groups.

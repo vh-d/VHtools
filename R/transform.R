@@ -317,7 +317,6 @@ winply <- function(x, fun, win, ...) {
   
   res
 }
-winply <- cmpfun(winply)
 
 
 #' Apply function to rolling/moving windows of changing width
@@ -340,7 +339,5 @@ winply_v <- function(x, fun, win, fill = NA, ...) {
   
   res
 }
-# require(compiler)
-winply_v <- cmpfun(winply_v)
 
 
