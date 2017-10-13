@@ -173,6 +173,33 @@ group_vec <- function(x, l, no.match = NULL, USE.NAMES = TRUE, fixed = TRUE) {
 #' A vectorized version of \code{strwrap()}
 #' @export
 wrap_text <- function(text, width) {
-  wtext <- sapply(text, function(x) paste(strwrap(x, width = width), collapse=" \n "))
-  return(wtext)
+  result <- sapply(text, function(x) paste(strwrap(x, width = width), 
+                                          collapse=" \n "))
+  return(result)
+}
+
+
+#' Concatenation operators
+#' @details   
+#' \describe{
+#'   \item{\%pp\%}{\code{a \%pp\% b} corresponds to \code{paste(a, b)}}
+#'   \item{\%p\%}{\code{a \%p\% b} corresponds to \code{paste0(a, b)}}
+#'   \item{\%pc\%}{\code{x \%pc\% c} corresponds to \code{paste(x, collapse = c)}}
+#' }
+#' @rdname concatenation
+#' @export
+`%pp%`<- function(a, b) {
+  paste(a, b)
+}
+
+#' @rdname concatenation
+#' @export
+`%p%` <- function(a, b) {
+  paste0(a, b)
+}
+
+#' @rdname concatenation
+#' @export
+`%pc%` <- function(x, c) {
+  paste(x, collapse = c)
 }
