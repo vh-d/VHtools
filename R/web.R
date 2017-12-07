@@ -16,11 +16,12 @@ getIEProxy <- function() {
   return(proxy)
 }
 
-# set proxy
-init_proxy <- function(proxy = getIEProxy(), ...) {
+#' setup httr proxy settings
+#' @export
+httr_proxy <- function(proxy = getIEProxy(), ...) {
   # attach httr
-  if (!("package:httpr" %in% search())) {
-    if (!require(httr)) stop("Cannot load httpr package \n")
+  if (!("package:httr" %in% search())) {
+    if (!requireNamespace("httr")) stop("Cannot load httpr package \n")
   }
   
   if (!is.null(proxy) && proxy != "auto") {
