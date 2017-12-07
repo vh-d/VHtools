@@ -1,16 +1,15 @@
 Package: VHtools
 Type: Package
 Title: help functions for daily usage
-Version: 0.2.14-2
+Version: 0.2.15
 Date: 2017-10-13
 Author: Vaclav Hausenblas
 Maintainer: Vaclav Hausenblas <vaclav.hausenblas@gmail.com>
 Description: Various help functions for daily work with strings clipboard etc...
 License: GPL
 RoxygenNote: 6.0.1
-Imports:
-    data.table
 Suggests:
+    data.table,
     devtools,
     httr,
     stringdist,

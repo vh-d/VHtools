@@ -9,7 +9,7 @@ readEIU <- function(file, dfRenameSeries = NULL, ...) {
   
   # attach/detach xlsx
   if (!("package:xlsx" %in% search())) {
-    tryCatch(library(xlsx), error = function(x) {warning(x); cat("Cannot load xlsx package required for reading from .xlsx files \n")})
+    if (!requireNamespace("xlsx")) stop("Cannot load xlsx package required for reading from .xlsx files \n")
     on.exit({detach("package:xlsx", unload=TRUE);
       detach("package:xlsxjars", unload=TRUE);
       detach("package:rJava", unload=TRUE)}
@@ -17,7 +17,7 @@ readEIU <- function(file, dfRenameSeries = NULL, ...) {
   }
   
   if (!("package:data.table" %in% search())) {
-    tryCatch(library(data.table), error = function(x) {warning(x); cat("Cannot load data.table package \n")})
+    stopifnot(requireNamespace("data.table"))
     on.exit(detach("package:data.table", unload=TRUE))
   }
   
