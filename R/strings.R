@@ -32,6 +32,14 @@ clDiacr <- function(x, from = "", to = "ASCII//TRANSLIT") {
   return(tmpstr)
 }
 
+
+#' replace non-breaking space by a regular space
+#' @export
+normalSpace <- function(x) {
+  gsub("\xa0", "\x20", x, fixed = TRUE)
+}
+
+
 #' recode vector of strings using a convertion table
 #' @param \code{input} input vector (usually strings)
 #' @param \code{conversionTable} data frame of at least two (from and to) columns
