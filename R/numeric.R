@@ -14,3 +14,10 @@ isSemiPosDef <- function(M) {
 pequal <- function(x, y) {
   abs(x - y) < sqrt(.Machine$double.eps)
 }
+
+#' dirty alternative to round()
+#' @export
+round2 <- function(x, ...) {
+  round(x + 100*.Machine$double.eps, ...)
+}
+
