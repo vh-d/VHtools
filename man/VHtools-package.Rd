@@ -6,5 +6,5 @@
 \alias{VHtools-package}
 \title{This paclage provides various help functions for daily work with strings, clipboard etc...}
 \description{
-This paclage provides various help functions for daily work with strings, clipboard etc...
+Various help functions for daily work with strings clipboard etc...
 }

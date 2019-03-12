@@ -1,13 +1,14 @@
 Package: VHtools
 Type: Package
 Title: help functions for daily usage
-Version: 0.2.16
+Version: 0.2.18
 Date: 2017-10-13
 Author: Vaclav Hausenblas
 Maintainer: Vaclav Hausenblas <vaclav.hausenblas@gmail.com>
 Description: Various help functions for daily work with strings clipboard etc...
 License: GPL
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.1
 Suggests:
     data.table,
     devtools,

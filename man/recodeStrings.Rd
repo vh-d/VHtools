@@ -4,7 +4,8 @@
 \alias{recodeStrings}
 \title{recode vector of strings using a convertion table}
 \usage{
-recodeStrings(input, conversionTable, from = 1, to = 2, replaceNA = T)
+recodeStrings(input, conversionTable, from = 1, to = 2,
+  replaceNA = T)
 }
 \arguments{
 \item{\code{input}}{input vector (usually strings)}

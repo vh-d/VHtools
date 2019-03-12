@@ -19,17 +19,8 @@ clSpecialChars <- function(x, from = "", to = "ASCII//TRANSLIT") {
 # --------------- clDiacr -------------------
 #' convert special letters to some normal equivalent characters
 #' @export
-clDiacr <- function(x, from = "", to = "ASCII//TRANSLIT") {
-  #   convChars = list(    'Ĺ '='S', 'Ĺˇ'='s', 'Ĺ˝'='Z', 'Ĺľ'='z', 'Ă€'='A', 'Ă'='A', 'Ă‚'='A', 'Ă'='A', 'Ă„'='A', 'Ă…'='A', 'Ă†'='A', 'Ă‡'='C', 'Ă'='E', 'Ă‰'='E',
-  #                             'ĂŠ'='E', 'Ă‹'='E', 'ĂŚ'='I', 'ĂŤ'='I', 'ĂŽ'='I', 'ĂŹ'='I', 'Ă‘'='N', 'Ă’'='O', 'Ă“'='O', 'Ă”'='O', 'Ă•'='O', 'Ă–'='O', 'Ă'='O', 'Ă™'='U',
-  #                             'Ăš'='U', 'Ă›'='U', 'Ăś'='U', 'Ăť'='Y', 'Ăž'='B', 'Ăź'='Ss', 'Ă '='a', 'Ăˇ'='a', 'Ă˘'='a', 'ĂŁ'='a', 'Ă¤'='a', 'ĂĄ'='a', 'Ă¦'='a', 'Ă§'='c',
-  #                             'Ă¨'='e', 'Ă©'='e', 'ĂŞ'='e', 'Ă«'='e', 'Ă¬'='i', 'Ă�'='i', 'Ă®'='i', 'ĂŻ'='i', 'Ă°'='o', 'Ă±'='n', 'Ă˛'='o', 'Ăł'='o', 'Ă´'='o', 'Ăµ'='o',
-  #                             'Ă¶'='o', 'Ă¸'='o', 'Ăą'='u', 'Ăş'='u', 'ĹŻ'='u' 'Ă»'='u', 'Ă˝'='y', 'Ă˝'='y', 'Ăľ'='b', 'Ăż'='y' )
-  #   tmpstr <- chartr(paste(names(unwanted_array), collapse=''),
-  #          paste(unwanted_array, collapse=''),
-  #          tmpstr)
-  tmpstr <- iconv(x, from = from, to = "ASCII//TRANSLIT")
-  return(tmpstr)
+clDiacr <- function(x, from = "", to = "ASCII//TRANSLIT", ...) {
+  iconv(x, from = from, to = to, ...)
 }
 
 
@@ -211,3 +202,39 @@ wrap_text <- function(text, width) {
 `%pc%` <- function(x, c) {
   paste(x, collapse = c)
 }
+
+
+#' seq_along alternative that returns named vector
+#' @export
+seq_along_named <- function(x){
+  y <- seq_along(x)
+  names(y) <- as.character(x)
+  
+  return(y)
+}
+
+#' apply iconv on all character columns of a data.table
+#' @param ... args are passed to iconv
+#' @export
+iconv_set.data.table <- function(DT, ...) {
+  for (col in names(which(sapply(DT, is.character), useNames = TRUE))) {
+    data.table::set(DT, j = col, value = iconv(DT[[col]], ...))
+  }
+}
+
+#' @export
+iconv_set <- function(obj, ...) {
+  UseMethod("iconv_set")
+}
+
+#' apply iconv on all character columns of a copy of a data.table
+# @importFrom base iconv
+#' @param ... args are passed to iconv
+#' @export
+iconv.data.table <- function(DT, ...) {
+  DT2 <- copy(DT)
+  for (col in names(which(sapply(DT2, is.character), useNames = TRUE))) {
+    data.table::set(DT2, j = col, value = iconv(DT2[[col]], ...))
+  }
+}
+

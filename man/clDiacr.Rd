@@ -4,7 +4,7 @@
 \alias{clDiacr}
 \title{convert special letters to some normal equivalent characters}
 \usage{
-clDiacr(x, from = "", to = "ASCII//TRANSLIT")
+clDiacr(x, from = "", to = "ASCII//TRANSLIT", ...)
 }
 \description{
 convert special letters to some normal equivalent characters
