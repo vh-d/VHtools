@@ -14,4 +14,5 @@ Suggests:
     devtools,
     httr,
     stringdist,
-    stringr
+    stringr,
+    testthat
