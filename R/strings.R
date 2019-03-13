@@ -16,13 +16,15 @@ clSpecialChars <- function(x, from = "", to = "ASCII//TRANSLIT") {
   return(tmpstr)
 }
 
-# --------------- clDiacr -------------------
-#' convert special letters to some normal equivalent characters
+#' convert to ASCII 
 #' @export
-clDiacr <- function(x, from = "", to = "ASCII//TRANSLIT", ...) {
+as_ascii <- function(x, from = "", to = "ASCII//TRANSLIT", ...) {
   iconv(x, from = from, to = to, ...)
 }
 
+#' @export
+#' @rdname as_ascii
+clDiacr <- as_ascii
 
 #' replace non-breaking space by a regular space
 #' @export
@@ -216,6 +218,7 @@ seq_along_named <- function(x){
 #' apply iconv on all character columns of a data.table
 #' @param ... args are passed to iconv
 #' @export
+#' @rdname seticonv
 iconv_set.data.table <- function(DT, ...) {
   for (col in names(which(sapply(DT, is.character), useNames = TRUE))) {
     data.table::set(DT, j = col, value = iconv(DT[[col]], ...))
@@ -223,10 +226,15 @@ iconv_set.data.table <- function(DT, ...) {
 }
 
 #' @export
+#' @rdname seticonv
 iconv_set <- function(obj, ...) {
   UseMethod("iconv_set")
 }
 
+#' @export
+#' @rdname seticonv
+seticonv <- iconv_set
+  
 #' apply iconv on all character columns of a copy of a data.table
 # @importFrom base iconv
 #' @param ... args are passed to iconv
