@@ -1,7 +1,7 @@
 Package: VHtools
 Type: Package
 Title: help functions for daily usage
-Version: 0.2.18
+Version: 0.2.19
 Date: 2017-10-13
 Author: Vaclav Hausenblas
 Maintainer: Vaclav Hausenblas <vaclav.hausenblas@gmail.com>
