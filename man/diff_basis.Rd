@@ -4,7 +4,7 @@
 \alias{diff_basis}
 \title{differences of periodic cumsums}
 \usage{
-diff_basis(x, t, tbase = 1, fill = NA)
+diff_basis(x, t, tbase = 1, ...)
 }
 \arguments{
 \item{x}{numeric/integer vector}
@@ -13,7 +13,7 @@ diff_basis(x, t, tbase = 1, fill = NA)
 
 \item{tbase}{value of time index where cumulative sums starts from 0}
 
-\item{fill}{(see help for diff_fill())}
+\item{...}{args passed to `diff_fill()`}
 }
 \value{
 return

@@ -2,24 +2,24 @@
 % Please edit documentation in R/transform.R
 \name{diff_fill}
 \alias{diff_fill}
-\title{alternative version of diff() returning constant-length vector}
+\title{An alternative version of diff() returning vector of the same length as input}
 \usage{
-diff_fill(x, lag = 1, differences = 1, fill = NA)
+diff_fill(x, lag = 1L, differences = 1L, fill = NA)
 }
 \arguments{
 \item{x}{numeric/integer vector (see help for diff())}
 
-\item{x}{lag (see help for diff())}
+\item{lag}{(see help for diff())}
 
-\item{x}{differences (see help for diff())}
+\item{differences}{(see help for diff())}
 
-\item{x}{fill value to fill in missing values}
+\item{fill}{value to fill in missing values}
 }
 \value{
 vector of the same length and as \code{x}
 }
 \description{
-Wrapper to diff() function that fill in values at the beginning of the resulting vector
+Wrapper to diff() function that fills in user-defined values (e.g. NA) at the beginning of the resulting vector
 }
 \examples{
 str(diff(1:10))

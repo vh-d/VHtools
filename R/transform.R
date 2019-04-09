@@ -261,14 +261,14 @@ fillNAs <- function(x, by_val = 0) {
 #' @param size (maximum) size of a single batch
 split2Batches <- function(x, size) split(x, ceiling(seq_along(x)/size))
 
-#' alternative version of diff() returning constant-length vector
+#' An alternative version of diff() returning vector of the same length as input
 #'
-#' Wrapper to diff() function that fill in values at the beginning of the resulting vector
+#' Wrapper to diff() function that fills in user-defined values (e.g. NA) at the beginning of the resulting vector
 #'
 #' @param x numeric/integer vector (see help for diff())
-#' @param x lag (see help for diff())
-#' @param x differences (see help for diff())
-#' @param x fill value to fill in missing values
+#' @param lag (see help for diff())
+#' @param differences (see help for diff())
+#' @param fill value to fill in missing values
 #'
 #' @return vector of the same length and as \code{x}
 #' @examples
@@ -276,8 +276,14 @@ split2Batches <- function(x, size) split(x, ceiling(seq_along(x)/size))
 #' str(diff_fill(1:10))
 #' str(diff_fill(1:10, fill = NULL))
 #' @export
-diff_fill <- function(x, lag = 1, differences = 1, fill = NA) {
-  c(rep(fill, lag*differences), diff(x, lag = lag, differences = differences))
+diff_fill <- function(x, lag = 1L, differences = 1L, fill = NA) {
+  if (isTRUE(length(x) > lag*differences)) {
+    c(
+      rep(as(fill, typeof(x)), lag*differences), # fill initial missing values resulting from diff while preserving original type
+      diff(x, lag = lag, differences = differences)
+    )
+  } else
+    return(rep(as(NA, typeof(x)), length(x)))
 }
 
 #' differences of periodic cumsums
@@ -287,7 +293,7 @@ diff_fill <- function(x, lag = 1, differences = 1, fill = NA) {
 #' @param x numeric/integer vector
 #' @param t time index
 #' @param tbase value of time index where cumulative sums starts from 0
-#' @param fill (see help for diff_fill())
+#' @param ... args passed to `diff_fill()`
 #'
 #' @return return
 #' @examples
@@ -299,7 +305,7 @@ diff_fill <- function(x, lag = 1, differences = 1, fill = NA) {
 #' plot(tsd, type = "l")
 #' 
 #' @export
-diff_basis <- function(x, t, tbase = 1, fill = NA) {
+diff_basis <- function(x, t, tbase = 1, ...) {
   result <- diff_fill(x, fill = fill)
   result[t == tbase] <- x[t == tbase]
   
