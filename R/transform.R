@@ -306,7 +306,7 @@ diff_fill <- function(x, lag = 1L, differences = 1L, fill = NA) {
 #' 
 #' @export
 diff_basis <- function(x, t, tbase = 1, ...) {
-  result <- diff_fill(x, fill = fill)
+  result <- diff_fill(x, ...)
   result[t == tbase] <- x[t == tbase]
   
   return(result)
